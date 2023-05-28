@@ -36,12 +36,12 @@ program
   .action(async (quote, author) => {
 
     try {
-      const addQuote = `${quote}`
-      const addAuthor = `${author || "Anonymous"}`
-      const addedLine = `\n + ${quote} | ${author}`
+      const addedLine = `${quote} | ${author || "Anonymous"} \n`
       await fs.appendFile(QUOTE_FILE, addedLine, 'utf-8')
 
+      .then (() => {
       console.log('Your quote has been added to the file.')
+    })
 
     } catch (err) {
       console.log(err)
