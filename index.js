@@ -16,7 +16,7 @@ program
       // TODO: Pull a random quote from the quotes.txt file
       const fileContents = await fs.readFile("./quotes.txt", "utf-8");
       
-      const lines = fileContents.toString().split("\n");
+      const lines = fileContents.toString().trim().split("\n");
 
       const randomLine = lines[Math.floor(Math.random() * lines.length)];
 
