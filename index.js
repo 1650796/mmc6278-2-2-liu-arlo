@@ -23,15 +23,11 @@ program
       // console log the quote and author
       console.log(chalk.blue.italic(randomLine.split("|")));
     
-
     } catch(err) {
       console.log(err);
     }
-      
   });
-     
     // You may style the text with chalk as you wish
-
 
 program
   .command("addQuote <quote> [author]")
@@ -45,8 +41,10 @@ program
       let addAuthor = `${author}\n`;
       
       if (!author) {
-        addAuthor = "Anonymous"
-      }
+        addAuthor = "Anonymous\n";
+      } /*else {
+        addAuthor = `${author}\n`;
+      }*/
 
       const newQuote = addQuote + " | " + addAuthor;
   
