@@ -12,10 +12,24 @@ program
   .command("getQuote")
   .description("Retrieves a random quote")
   .action(async () => {
-    // TODO: Pull a random quote from the quotes.txt file
-    // console log the quote and author
-    // You may style the text with chalk as you wish
+    try {
+      // TODO: Pull a random quote from the quotes.txt file
+      const fileContents = await fs.readFile("./quotes.txt", "utf-8");
+      
+      const lines = fileContents.toString().split("\n");
+
+      const randomLine = lines[Math.floor(Math.random() * lines.length)];
+
+      // console log the quote and author
+      console.log(chalk.blue.italic(randomLine))
+    } catch(err) {
+      console.log(err)
+    }
+      
   });
+     
+    // You may style the text with chalk as you wish
+
 
 program
   .command("addQuote <quote> [author]")
