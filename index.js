@@ -21,7 +21,7 @@ program
       const randomLine = lines[Math.floor(Math.random() * lines.length)];
 
       // console log the quote and author
-      console.log(chalk.blue.italic(randomLine));
+      console.log(chalk.blue.italic(randomLine.split("|")));
     
 
     } catch(err) {
@@ -41,13 +41,15 @@ program
     // If no author is provided,
     // save the author as "Anonymous".
     try {
-      const addQuote = `\n${quote}`;
-      const addAuthor = `${author}`;
-      const newQuote = addQuote + "|" + addAuthor;
+      const addQuote = `${quote}`;
+      let addAuthor = `${author}\n`;
+      
+      if (!author) {
+        addAuthor = "Anonymous"
+      }
 
-      /*if (!author) {
-        author == "Anonymous"
-      }*/
+      const newQuote = addQuote + " | " + addAuthor;
+  
       await fs.appendFile("./quotes.txt", newQuote);
    
     // After the quote/author is saved,
@@ -57,6 +59,7 @@ program
     // You may style the text with chalk as you wish
     // HINT: You can store both author and quote on the same line using
     // a separator like pipe | and then using .split() when retrieving
+
     } catch(err) {
      console.log(err);
     }
@@ -65,4 +68,4 @@ program
 program.parse();
 
 
-//resource: https://www.digitalocean.com/community/tutorials/how-to-work-with-files-using-the-fs-module-in-node-js
+//resource used: https://www.digitalocean.com/community/tutorials/how-to-work-with-files-using-the-fs-module-in-node-js
